@@ -1,0 +1,6 @@
+{
+    "title": "Select All Employees",
+    "description": "Write a query to retrieve all columns from the <code>employees</code> table.",
+    "hint": "Use SELECT * to select all columns from a table.",
+    "solution": "SELECT * FROM employees"
+}

@@ -1,0 +1,6 @@
+{
+    "title": "Join Orders with Customers",
+    "description": "Write a query to retrieve all orders along with the customer name. Display <code>order_id</code>, <code>order_date</code>, and <code>name</code> (customer name).",
+    "hint": "Use an INNER JOIN between orders and customers tables on customer_id.",
+    "solution": "SELECT orders.order_id, orders.order_date, customers.name FROM orders INNER JOIN customers ON orders.customer_id = customers.customer_id"
+}

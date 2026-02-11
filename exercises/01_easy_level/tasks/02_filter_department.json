@@ -1,0 +1,6 @@
+{
+    "title": "Filter by Department",
+    "description": "Write a query to retrieve all employees who work in the <code>IT</code> department.",
+    "hint": "Use the WHERE clause to filter by department.",
+    "solution": "SELECT * FROM employees WHERE department = 'IT'"
+}

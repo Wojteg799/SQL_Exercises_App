@@ -1,0 +1,6 @@
+{
+    "title": "Count Employees",
+    "description": "Write a query to count the total number of employees in the company.",
+    "hint": "Use the COUNT() aggregate function.",
+    "solution": "SELECT COUNT(*) FROM employees"
+}

@@ -1,0 +1,6 @@
+{
+    "title": "Products Above Average Price",
+    "description": "Write a query to find all products that have a price higher than the average price of all products. Display <code>name</code> and <code>price</code>.",
+    "hint": "Use a subquery to calculate the average price, then compare in the WHERE clause.",
+    "solution": "SELECT name, price FROM products WHERE price > (SELECT AVG(price) FROM products)"
+}
