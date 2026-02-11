@@ -1,0 +1,6 @@
+{
+    "title": "Name and Department Only",
+    "description": "Write a query to display only the <code>name</code> and <code>department</code> of all employees, sorted alphabetically by name.",
+    "hint": "Use SELECT with specific columns and ORDER BY.",
+    "solution": "SELECT name, department FROM employees ORDER BY name"
+}

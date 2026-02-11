@@ -1,0 +1,6 @@
+{
+    "title": "Employees per Department",
+    "description": "Write a query to count how many employees work in each department. Display <code>department</code> and <code>count</code> (number of employees).",
+    "hint": "Use GROUP BY on the department column with COUNT().",
+    "solution": "SELECT department, COUNT(*) as count FROM employees GROUP BY department"
+}

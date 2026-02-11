@@ -1,0 +1,6 @@
+{
+    "title": "Highest Salary",
+    "description": "Write a query to find the employee with the highest salary. Display their <code>name</code> and <code>salary</code>.",
+    "hint": "Use ORDER BY with DESC and LIMIT 1.",
+    "solution": "SELECT name, salary FROM employees ORDER BY salary DESC LIMIT 1"
+}

@@ -1,0 +1,6 @@
+{
+    "title": "Average Salary",
+    "description": "Write a query to calculate the average salary across all employees. Display it as <code>avg_salary</code>.",
+    "hint": "Use the AVG() aggregate function with an alias.",
+    "solution": "SELECT AVG(salary) as avg_salary FROM employees"
+}
