@@ -1,0 +1,6 @@
+{
+    "title": "Top Spending Customers",
+    "description": "Write a query to find the total amount spent by each customer. Display <code>name</code> and <code>total_spent</code>, ordered from highest to lowest.",
+    "hint": "Join customers, orders, order_items, and products tables. Use SUM(price * quantity) and GROUP BY.",
+    "solution": "SELECT customers.name, SUM(products.price * order_items.quantity) as total_spent FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id INNER JOIN order_items ON orders.order_id = order_items.order_id INNER JOIN products ON order_items.product_id = products.product_id GROUP BY customers.name ORDER BY total_spent DESC"
+}

@@ -1,0 +1,6 @@
+{
+    "title": "Products Never Ordered",
+    "description": "Write a query to find all products that have never been ordered. Display <code>name</code> and <code>price</code>.",
+    "hint": "Use a LEFT JOIN between products and order_items, then filter for NULL values.",
+    "solution": "SELECT products.name, products.price FROM products LEFT JOIN order_items ON products.product_id = order_items.product_id WHERE order_items.item_id IS NULL"
+}

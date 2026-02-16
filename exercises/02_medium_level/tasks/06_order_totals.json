@@ -1,0 +1,6 @@
+{
+    "title": "Orders with Total Value",
+    "description": "Write a query to display each order with its total value. Show <code>order_id</code>, <code>order_date</code>, and <code>total_value</code>.",
+    "hint": "Join orders with order_items and products, then GROUP BY order_id and use SUM().",
+    "solution": "SELECT orders.order_id, orders.order_date, SUM(products.price * order_items.quantity) as total_value FROM orders INNER JOIN order_items ON orders.order_id = order_items.order_id INNER JOIN products ON order_items.product_id = products.product_id GROUP BY orders.order_id, orders.order_date"
+}
