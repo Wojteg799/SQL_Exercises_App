@@ -1,0 +1,6 @@
+{
+    "title": "Students with No Enrollments",
+    "description": "Write a query to find students who are not enrolled in any course. Display <code>name</code> and <code>email</code>.",
+    "hint": "Use a LEFT JOIN with enrollments and filter for NULL, or use NOT IN with a subquery.",
+    "solution": "SELECT students.name, students.email FROM students LEFT JOIN enrollments ON students.student_id = enrollments.student_id WHERE enrollments.enrollment_id IS NULL"
+}

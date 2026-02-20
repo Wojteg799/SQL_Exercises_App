@@ -159,10 +159,120 @@ def create_medium_level_db():
     print(f"[OK] Created Medium Level database: {db_path}")
 
 
+def create_hard_level_db():
+    """Create the university database for Hard Level."""
+    db_path = EXERCISES_DIR / "03_hard_level" / "database.db"
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS students (
+            student_id INTEGER PRIMARY KEY,
+            name TEXT NOT NULL,
+            email TEXT NOT NULL,
+            enrollment_year INTEGER NOT NULL
+        )
+    ''')
+
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS professors (
+            professor_id INTEGER PRIMARY KEY,
+            name TEXT NOT NULL,
+            department TEXT NOT NULL
+        )
+    ''')
+
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS courses (
+            course_id INTEGER PRIMARY KEY,
+            course_name TEXT NOT NULL,
+            department TEXT NOT NULL,
+            credits INTEGER NOT NULL,
+            professor_id INTEGER,
+            FOREIGN KEY (professor_id) REFERENCES professors(professor_id)
+        )
+    ''')
+
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS enrollments (
+            enrollment_id INTEGER PRIMARY KEY,
+            student_id INTEGER NOT NULL,
+            course_id INTEGER NOT NULL,
+            grade REAL,
+            FOREIGN KEY (student_id) REFERENCES students(student_id),
+            FOREIGN KEY (course_id) REFERENCES courses(course_id)
+        )
+    ''')
+
+    students = [
+        (1, 'Anna White', 'anna@uni.edu', 2021),
+        (2, 'Brian Green', 'brian@uni.edu', 2020),
+        (3, 'Clara Hill', 'clara@uni.edu', 2022),
+        (4, 'Derek Stone', 'derek@uni.edu', 2021),
+        (5, 'Eva Moon', 'eva@uni.edu', 2023),
+        (6, 'Frank Reed', 'frank@uni.edu', 2020),
+        (7, 'Grace Lin', 'grace@uni.edu', 2022),
+        (8, 'Henry Woods', 'henry@uni.edu', 2023),
+    ]
+
+    professors = [
+        (1, 'Dr. Smith', 'Computer Science'),
+        (2, 'Dr. Adams', 'Mathematics'),
+        (3, 'Dr. Clark', 'Physics'),
+        (4, 'Dr. Baker', 'Computer Science'),
+    ]
+
+    courses = [
+        (1, 'Intro to Programming', 'Computer Science', 4, 1),
+        (2, 'Data Structures', 'Computer Science', 4, 1),
+        (3, 'Calculus I', 'Mathematics', 3, 2),
+        (4, 'Linear Algebra', 'Mathematics', 3, 2),
+        (5, 'Physics I', 'Physics', 4, 3),
+        (6, 'Database Systems', 'Computer Science', 3, 4),
+    ]
+
+    enrollments = [
+        (1, 1, 1, 92),
+        (2, 1, 3, 88),
+        (3, 1, 5, 79),
+        (4, 2, 1, 75),
+        (5, 2, 2, 81),
+        (6, 2, 4, 70),
+        (7, 3, 1, 95),
+        (8, 3, 3, 91),
+        (9, 4, 2, 68),
+        (10, 4, 5, 72),
+        (11, 4, 6, 85),
+        (12, 6, 2, 88),
+        (13, 6, 3, 90),
+        (14, 6, 6, 93),
+        (15, 7, 1, 87),
+        (16, 7, 4, 82),
+    ]
+    # Note: students 5 (Eva) and 8 (Henry) have no enrollments
+
+    cursor.execute('DELETE FROM enrollments')
+    cursor.execute('DELETE FROM courses')
+    cursor.execute('DELETE FROM professors')
+    cursor.execute('DELETE FROM students')
+
+    cursor.executemany('INSERT INTO students VALUES (?, ?, ?, ?)', students)
+    cursor.executemany('INSERT INTO professors VALUES (?, ?, ?)', professors)
+    cursor.executemany('INSERT INTO courses VALUES (?, ?, ?, ?, ?)', courses)
+    cursor.executemany('INSERT INTO enrollments VALUES (?, ?, ?, ?)', enrollments)
+
+    conn.commit()
+    conn.close()
+    print(f"[OK] Created Hard Level database: {db_path}")
+
+
 if __name__ == '__main__':
     print("Initializing SQL Practice Lab databases...")
     print("")
     create_easy_level_db()
     create_medium_level_db()
+    create_hard_level_db()
     print("")
     print("[OK] All databases created successfully!")

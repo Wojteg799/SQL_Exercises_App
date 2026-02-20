@@ -1,0 +1,6 @@
+{
+    "title": "Top Students by GPA",
+    "description": "Write a query to find students whose average grade is above 85. Display <code>name</code> and <code>avg_grade</code> (rounded to 2 decimal places), ordered by average grade descending.",
+    "hint": "Join students with enrollments, use AVG() and HAVING, and ROUND() to format the result.",
+    "solution": "SELECT students.name, ROUND(AVG(enrollments.grade), 2) as avg_grade FROM students INNER JOIN enrollments ON students.student_id = enrollments.student_id GROUP BY students.name HAVING AVG(enrollments.grade) > 85 ORDER BY avg_grade DESC"
+}

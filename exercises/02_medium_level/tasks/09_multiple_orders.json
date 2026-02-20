@@ -1,0 +1,6 @@
+{
+    "title": "Customers with Multiple Orders",
+    "description": "Write a query to find customers who have placed more than 1 order. Display <code>name</code> and <code>order_count</code>.",
+    "hint": "Join customers with orders, use GROUP BY and HAVING.",
+    "solution": "SELECT customers.name, COUNT(*) as order_count FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id GROUP BY customers.name HAVING COUNT(*) > 1"
+}

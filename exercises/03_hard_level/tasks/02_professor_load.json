@@ -1,0 +1,6 @@
+{
+    "title": "Professor Course Load",
+    "description": "Write a query to display each professor's name and the number of courses they teach. Include professors who teach 0 courses. Display <code>name</code> and <code>course_count</code>, ordered by course count descending.",
+    "hint": "Use LEFT JOIN between professors and courses, GROUP BY professor name.",
+    "solution": "SELECT professors.name, COUNT(courses.course_id) as course_count FROM professors LEFT JOIN courses ON professors.professor_id = courses.professor_id GROUP BY professors.name ORDER BY course_count DESC"
+}

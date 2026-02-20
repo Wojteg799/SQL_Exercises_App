@@ -1,0 +1,6 @@
+{
+    "title": "Customer Order Summary",
+    "description": "Write a query to show each customer's name and total number of items they ordered (sum of quantities). Display <code>name</code> and <code>total_items</code>. Include all customers, even those with no orders (show 0 for them).",
+    "hint": "Use LEFT JOIN across customers, orders, and order_items. Use COALESCE to turn NULL into 0.",
+    "solution": "SELECT customers.name, COALESCE(SUM(order_items.quantity), 0) as total_items FROM customers LEFT JOIN orders ON customers.customer_id = orders.customer_id LEFT JOIN order_items ON orders.order_id = order_items.order_id GROUP BY customers.name"
+}

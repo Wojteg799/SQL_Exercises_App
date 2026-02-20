@@ -1,0 +1,6 @@
+{
+    "title": "Departments with Highest Average Grade",
+    "description": "Write a query to find the average student grade per department. Display <code>department</code> and <code>avg_grade</code> (rounded to 2 decimal places), ordered by average grade descending.",
+    "hint": "Join courses with enrollments, GROUP BY department, use AVG() on grade.",
+    "solution": "SELECT courses.department, ROUND(AVG(enrollments.grade), 2) as avg_grade FROM courses INNER JOIN enrollments ON courses.course_id = enrollments.course_id GROUP BY courses.department ORDER BY avg_grade DESC"
+}

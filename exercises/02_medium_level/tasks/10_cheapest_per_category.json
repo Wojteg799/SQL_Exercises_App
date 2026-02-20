@@ -1,0 +1,6 @@
+{
+    "title": "Cheapest Product per Category",
+    "description": "Write a query to find the cheapest product in each category. Display <code>category</code>, <code>name</code>, and <code>price</code>.",
+    "hint": "Use a subquery to find the MIN price per category, then match it.",
+    "solution": "SELECT p.category, p.name, p.price FROM products p WHERE p.price = (SELECT MIN(p2.price) FROM products p2 WHERE p2.category = p.category)"
+}

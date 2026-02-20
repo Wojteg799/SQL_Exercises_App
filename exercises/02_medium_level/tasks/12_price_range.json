@@ -1,0 +1,6 @@
+{
+    "title": "Price Range per Category",
+    "description": "Write a query to show the minimum price, maximum price, and average price for each product category. Display <code>category</code>, <code>min_price</code>, <code>max_price</code>, and <code>avg_price</code>.",
+    "hint": "Use GROUP BY with MIN(), MAX(), and AVG().",
+    "solution": "SELECT category, MIN(price) as min_price, MAX(price) as max_price, AVG(price) as avg_price FROM products GROUP BY category"
+}

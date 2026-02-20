@@ -1,0 +1,6 @@
+{
+    "title": "Professor's Best Student",
+    "description": "For each professor, find the student with the highest grade in any of their courses. Display <code>professor_name</code>, <code>student_name</code>, and <code>grade</code>.",
+    "hint": "Join professors, courses, enrollments, and students. Use a subquery or MAX() with a correlated approach.",
+    "solution": "SELECT p.name as professor_name, s.name as student_name, e.grade FROM professors p INNER JOIN courses c ON p.professor_id = c.professor_id INNER JOIN enrollments e ON c.course_id = e.course_id INNER JOIN students s ON e.student_id = s.student_id WHERE e.grade = (SELECT MAX(e2.grade) FROM enrollments e2 INNER JOIN courses c2 ON e2.course_id = c2.course_id WHERE c2.professor_id = p.professor_id)"
+}

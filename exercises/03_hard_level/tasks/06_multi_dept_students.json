@@ -1,0 +1,6 @@
+{
+    "title": "Students in Multiple Departments",
+    "description": "Write a query to find students who are enrolled in courses from more than 1 department. Display <code>name</code> and <code>dept_count</code>.",
+    "hint": "Join students, enrollments, and courses. Use COUNT(DISTINCT department) with HAVING.",
+    "solution": "SELECT students.name, COUNT(DISTINCT courses.department) as dept_count FROM students INNER JOIN enrollments ON students.student_id = enrollments.student_id INNER JOIN courses ON enrollments.course_id = courses.course_id GROUP BY students.name HAVING COUNT(DISTINCT courses.department) > 1"
+}

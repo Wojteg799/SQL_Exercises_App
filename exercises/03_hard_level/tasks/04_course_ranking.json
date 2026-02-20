@@ -1,0 +1,6 @@
+{
+    "title": "Course Enrollment Ranking",
+    "description": "Write a query to rank courses by the number of enrolled students. Display <code>course_name</code>, <code>department</code>, and <code>student_count</code>. Only include courses with at least 1 student, ordered by student count descending.",
+    "hint": "Join courses with enrollments, GROUP BY course, use HAVING to filter, ORDER BY count.",
+    "solution": "SELECT courses.course_name, courses.department, COUNT(enrollments.student_id) as student_count FROM courses INNER JOIN enrollments ON courses.course_id = enrollments.course_id GROUP BY courses.course_name, courses.department HAVING COUNT(enrollments.student_id) >= 1 ORDER BY student_count DESC"
+}
