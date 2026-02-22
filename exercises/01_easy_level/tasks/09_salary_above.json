@@ -1,0 +1,6 @@
+{
+    "title": "Salary Above 70000",
+    "description": "Write a query to find all employees with a salary greater than 70000. Display <code>name</code> and <code>salary</code>.",
+    "hint": "Use WHERE with a comparison operator.",
+    "solution": "SELECT name, salary FROM employees WHERE salary > 70000"
+}

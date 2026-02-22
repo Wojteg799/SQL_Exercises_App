@@ -1,0 +1,6 @@
+{
+    "title": "Courses with No Enrollments",
+    "description": "Write a query to find courses that have no students enrolled. Display <code>course_name</code> and <code>department</code>.",
+    "hint": "Use LEFT JOIN between courses and enrollments, then filter for NULL enrollment_id.",
+    "solution": "SELECT courses.course_name, courses.department FROM courses LEFT JOIN enrollments ON courses.course_id = enrollments.course_id WHERE enrollments.enrollment_id IS NULL"
+}

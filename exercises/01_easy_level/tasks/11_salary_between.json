@@ -1,0 +1,6 @@
+{
+    "title": "Salary Between Range",
+    "description": "Write a query to find employees with a salary between 60000 and 80000 (inclusive). Display <code>name</code>, <code>department</code>, and <code>salary</code>.",
+    "hint": "Use the BETWEEN operator.",
+    "solution": "SELECT name, department, salary FROM employees WHERE salary BETWEEN 60000 AND 80000"
+}

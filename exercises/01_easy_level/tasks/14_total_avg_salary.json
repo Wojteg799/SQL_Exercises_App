@@ -1,0 +1,6 @@
+{
+    "title": "Total and Average Salary per Department",
+    "description": "Write a query to show the total salary and average salary for each department. Display <code>department</code>, <code>total_salary</code>, and <code>avg_salary</code>.",
+    "hint": "Use GROUP BY with SUM() and AVG().",
+    "solution": "SELECT department, SUM(salary) as total_salary, AVG(salary) as avg_salary FROM employees GROUP BY department"
+}

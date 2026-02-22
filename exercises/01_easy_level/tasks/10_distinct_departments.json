@@ -1,0 +1,6 @@
+{
+    "title": "Distinct Departments",
+    "description": "Write a query to list all unique departments in the company.",
+    "hint": "Use SELECT DISTINCT.",
+    "solution": "SELECT DISTINCT department FROM employees"
+}

@@ -1,0 +1,6 @@
+{
+    "title": "Professor with Most Students",
+    "description": "Write a query to find the professor who teaches the most students (by number of enrollments). Display <code>name</code> and <code>student_count</code>.",
+    "hint": "Join professors, courses, and enrollments. GROUP BY professor, COUNT enrollments, ORDER BY DESC, LIMIT 1.",
+    "solution": "SELECT professors.name, COUNT(enrollments.enrollment_id) as student_count FROM professors INNER JOIN courses ON professors.professor_id = courses.professor_id INNER JOIN enrollments ON courses.course_id = enrollments.course_id GROUP BY professors.name ORDER BY student_count DESC LIMIT 1"
+}

@@ -1,0 +1,6 @@
+{
+    "title": "Grade Distribution",
+    "description": "Write a query to categorize grades: 90+ as 'A', 80-89 as 'B', 70-79 as 'C', below 70 as 'D'. Display <code>student_name</code>, <code>course_name</code>, <code>grade</code>, and <code>letter_grade</code>.",
+    "hint": "Use CASE WHEN to create the letter_grade column.",
+    "solution": "SELECT students.name as student_name, courses.course_name, enrollments.grade, CASE WHEN enrollments.grade >= 90 THEN 'A' WHEN enrollments.grade >= 80 THEN 'B' WHEN enrollments.grade >= 70 THEN 'C' ELSE 'D' END as letter_grade FROM students INNER JOIN enrollments ON students.student_id = enrollments.student_id INNER JOIN courses ON enrollments.course_id = courses.course_id"
+}

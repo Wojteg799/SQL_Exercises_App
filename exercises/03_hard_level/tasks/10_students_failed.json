@@ -1,0 +1,6 @@
+{
+    "title": "Students Who Failed",
+    "description": "Write a query to find students who scored below 75 in any course. Display <code>student_name</code>, <code>course_name</code>, and <code>grade</code>, ordered by grade ascending.",
+    "hint": "Join students, enrollments, and courses. Use WHERE to filter grades below 75.",
+    "solution": "SELECT students.name as student_name, courses.course_name, enrollments.grade FROM students INNER JOIN enrollments ON students.student_id = enrollments.student_id INNER JOIN courses ON enrollments.course_id = courses.course_id WHERE enrollments.grade < 75 ORDER BY enrollments.grade ASC"
+}

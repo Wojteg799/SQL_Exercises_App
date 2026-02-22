@@ -1,0 +1,6 @@
+{
+    "title": "Total Credits per Student",
+    "description": "Write a query to calculate the total number of credits each enrolled student is taking. Display <code>name</code> and <code>total_credits</code>, ordered by total credits descending.",
+    "hint": "Join students, enrollments, and courses. Use SUM on credits and GROUP BY student name.",
+    "solution": "SELECT students.name, SUM(courses.credits) as total_credits FROM students INNER JOIN enrollments ON students.student_id = enrollments.student_id INNER JOIN courses ON enrollments.course_id = courses.course_id GROUP BY students.name ORDER BY total_credits DESC"
+}

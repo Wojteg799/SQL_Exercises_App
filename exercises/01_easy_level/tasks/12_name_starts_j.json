@@ -1,0 +1,6 @@
+{
+    "title": "Name Starts With J",
+    "description": "Write a query to find all employees whose name starts with the letter 'J'. Display <code>name</code> and <code>department</code>.",
+    "hint": "Use the LIKE operator with a wildcard %.",
+    "solution": "SELECT name, department FROM employees WHERE name LIKE 'J%'"
+}

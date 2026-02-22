@@ -1,0 +1,6 @@
+{
+    "title": "IT or Finance Employees",
+    "description": "Write a query to find all employees who work in either <code>IT</code> or <code>Finance</code>. Display <code>name</code>, <code>department</code>, and <code>salary</code>.",
+    "hint": "Use the IN operator or combine conditions with OR.",
+    "solution": "SELECT name, department, salary FROM employees WHERE department IN ('IT', 'Finance')"
+}
