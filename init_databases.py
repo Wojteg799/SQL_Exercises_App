@@ -268,11 +268,133 @@ def create_hard_level_db():
     print(f"[OK] Created Hard Level database: {db_path}")
 
 
+def create_very_hard_level_db():
+    """Create the e-commerce analytics database for Very Hard Level.
+    Same schema as medium (store) but with more data spanning multiple months.
+    """
+    db_path = EXERCISES_DIR / "04_very_hard_level" / "database.db"
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS customers (
+            customer_id INTEGER PRIMARY KEY,
+            name TEXT NOT NULL,
+            email TEXT NOT NULL,
+            city TEXT NOT NULL
+        )
+    ''')
+
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS products (
+            product_id INTEGER PRIMARY KEY,
+            name TEXT NOT NULL,
+            category TEXT NOT NULL,
+            price REAL NOT NULL
+        )
+    ''')
+
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS orders (
+            order_id INTEGER PRIMARY KEY,
+            customer_id INTEGER NOT NULL,
+            order_date TEXT NOT NULL,
+            FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+        )
+    ''')
+
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS order_items (
+            item_id INTEGER PRIMARY KEY,
+            order_id INTEGER NOT NULL,
+            product_id INTEGER NOT NULL,
+            quantity INTEGER NOT NULL,
+            FOREIGN KEY (order_id) REFERENCES orders(order_id),
+            FOREIGN KEY (product_id) REFERENCES products(product_id)
+        )
+    ''')
+
+    customers = [
+        (1, 'Alice Cooper',   'alice@email.com',   'New York'),
+        (2, 'Bob Dylan',      'bob@email.com',     'Los Angeles'),
+        (3, 'Charlie Parker', 'charlie@email.com', 'Chicago'),
+        (4, 'Diana Ross',     'diana@email.com',   'Houston'),
+        (5, 'Edward Norton',  'edward@email.com',  'Phoenix'),
+        (6, 'Fiona Green',    'fiona@email.com',   'New York'),
+        (7, 'George Hall',    'george@email.com',  'Chicago'),
+    ]
+
+    products = [
+        (1, 'Laptop Pro',     'Electronics', 1299.99),
+        (2, 'Wireless Mouse', 'Electronics',   29.99),
+        (3, 'Office Chair',   'Furniture',    249.99),
+        (4, 'Standing Desk',  'Furniture',    499.99),
+        (5, 'Monitor 27"',    'Electronics',  349.99),
+        (6, 'Keyboard',       'Electronics',   89.99),
+        (7, 'Desk Lamp',      'Furniture',     45.99),
+        (8, 'Webcam HD',      'Electronics',   79.99),
+        (9, 'USB Hub',        'Electronics',   39.99),
+    ]
+
+    # Orders spanning January and February 2024
+    orders = [
+        (1,  1, '2024-01-05'),
+        (2,  2, '2024-01-12'),
+        (3,  3, '2024-01-18'),
+        (4,  1, '2024-01-22'),  # Alice orders again in Jan
+        (5,  4, '2024-01-25'),
+        (6,  5, '2024-01-28'),
+        (7,  1, '2024-02-03'),  # Alice in Feb → repeat buyer
+        (8,  2, '2024-02-10'),  # Bob in Feb → repeat buyer
+        (9,  6, '2024-02-15'),
+        (10, 7, '2024-02-20'),
+        (11, 3, '2024-02-24'),  # Charlie in Feb → repeat buyer
+    ]
+
+    order_items = [
+        (1,  1, 1, 1),   # Laptop Pro
+        (2,  1, 2, 2),   # 2x Mouse
+        (3,  2, 3, 1),   # Office Chair
+        (4,  2, 7, 1),   # Desk Lamp
+        (5,  3, 5, 1),   # Monitor (Electronics only)
+        (6,  3, 6, 1),   # Keyboard (Electronics only)
+        (7,  4, 8, 1),   # Webcam
+        (8,  5, 4, 1),   # Standing Desk
+        (9,  6, 1, 1),   # Laptop Pro (Electronics only)
+        (10, 6, 2, 1),   # Mouse (Electronics only)
+        (11, 7, 9, 2),   # 2x USB Hub
+        (12, 8, 5, 1),   # Monitor
+        (13, 9, 3, 1),   # Office Chair
+        (14, 9, 7, 2),   # 2x Desk Lamp
+        (15, 10, 1, 1),  # Laptop Pro
+        (16, 10, 6, 1),  # Keyboard
+        (17, 11, 9, 3),  # 3x USB Hub
+        (18, 11, 2, 1),  # Mouse
+    ]
+
+    cursor.execute('DELETE FROM order_items')
+    cursor.execute('DELETE FROM orders')
+    cursor.execute('DELETE FROM products')
+    cursor.execute('DELETE FROM customers')
+
+    cursor.executemany('INSERT INTO customers VALUES (?, ?, ?, ?)', customers)
+    cursor.executemany('INSERT INTO products VALUES (?, ?, ?, ?)', products)
+    cursor.executemany('INSERT INTO orders VALUES (?, ?, ?)', orders)
+    cursor.executemany('INSERT INTO order_items VALUES (?, ?, ?, ?)', order_items)
+
+    conn.commit()
+    conn.close()
+    print(f"[OK] Created Very Hard Level database: {db_path}")
+
+
 if __name__ == '__main__':
     print("Initializing SQL Practice Lab databases...")
     print("")
     create_easy_level_db()
     create_medium_level_db()
     create_hard_level_db()
+    create_very_hard_level_db()
     print("")
     print("[OK] All databases created successfully!")

@@ -1,0 +1,6 @@
+{
+    "title": "Rank Students by GPA Within Department",
+    "description": "Write a query to show each student's average grade, the department of the course with their highest grade, and rank them. Display <code>student_name</code>, <code>avg_grade</code> (rounded to 2 decimal places), ordered by avg_grade descending.",
+    "hint": "Join all three tables, GROUP BY student, use AVG() and ROUND().",
+    "solution": "SELECT students.name as student_name, ROUND(AVG(enrollments.grade), 2) as avg_grade FROM students INNER JOIN enrollments ON students.student_id = enrollments.student_id GROUP BY students.name ORDER BY avg_grade DESC"
+}

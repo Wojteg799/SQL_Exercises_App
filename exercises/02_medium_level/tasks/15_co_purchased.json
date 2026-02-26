@@ -1,0 +1,6 @@
+{
+    "title": "Product Ordered With Laptop",
+    "description": "Write a query to find all products that were ordered in the same order as <code>Laptop Pro</code>. Display only the other product <code>name</code> (exclude Laptop Pro itself).",
+    "hint": "Use a subquery to find order IDs that contain Laptop Pro, then find other products in those orders.",
+    "solution": "SELECT DISTINCT products.name FROM products INNER JOIN order_items ON products.product_id = order_items.product_id WHERE order_items.order_id IN (SELECT order_items.order_id FROM order_items INNER JOIN products ON order_items.product_id = products.product_id WHERE products.name = 'Laptop Pro') AND products.name != 'Laptop Pro'"
+}

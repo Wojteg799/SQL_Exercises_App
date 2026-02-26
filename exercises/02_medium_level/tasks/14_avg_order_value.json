@@ -1,0 +1,6 @@
+{
+    "title": "Average Order Value",
+    "description": "Write a query to calculate the average value of all orders. Display the result as <code>avg_order_value</code> (rounded to 2 decimal places).",
+    "hint": "Use a subquery to calculate each order's total, then wrap it with AVG() and ROUND().",
+    "solution": "SELECT ROUND(AVG(order_total), 2) as avg_order_value FROM (SELECT SUM(products.price * order_items.quantity) as order_total FROM orders INNER JOIN order_items ON orders.order_id = order_items.order_id INNER JOIN products ON order_items.product_id = products.product_id GROUP BY orders.order_id)"
+}

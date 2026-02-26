@@ -1,0 +1,6 @@
+{
+    "title": "Recursive CTE: Monthly Revenue with Gap Fill",
+    "description": "Using a <strong>recursive CTE</strong>, generate every month from <code>2024-01</code> to <code>2024-02</code>, then left-join actual revenue data so that months with no orders show <code>0</code> instead of being missing. Display <code>month</code> and <code>revenue</code>.<br><br>This simulates a real-world reporting requirement where gaps in time series must be filled.",
+    "hint": "Base case: SELECT '2024-01'. Recursive step: use date() or strftime to increment the month until > '2024-02'. LEFT JOIN to actual monthly revenue CTE. Use COALESCE(revenue, 0).",
+    "solution": "WITH RECURSIVE months(month) AS (SELECT '2024-01' UNION ALL SELECT strftime('%Y-%m', month || '-01', '+1 month') FROM months WHERE month < '2024-02'), monthly_revenue AS (SELECT strftime('%Y-%m', orders.order_date) as month, SUM(products.price * order_items.quantity) as revenue FROM orders INNER JOIN order_items ON orders.order_id = order_items.order_id INNER JOIN products ON order_items.product_id = products.product_id GROUP BY strftime('%Y-%m', orders.order_date)) SELECT months.month, COALESCE(monthly_revenue.revenue, 0) as revenue FROM months LEFT JOIN monthly_revenue ON months.month = monthly_revenue.month ORDER BY months.month"
+}

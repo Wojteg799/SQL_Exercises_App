@@ -1,0 +1,6 @@
+{
+    "title": "Enrollment Percentage per Course",
+    "description": "Write a query to show for each course, what percentage of all students are enrolled. Display <code>course_name</code> and <code>pct_enrolled</code> (rounded to 1 decimal place).",
+    "hint": "Count enrolled students per course, divide by total number of students, multiply by 100. Use ROUND().",
+    "solution": "SELECT courses.course_name, ROUND(COUNT(enrollments.student_id) * 100.0 / (SELECT COUNT(*) FROM students), 1) as pct_enrolled FROM courses LEFT JOIN enrollments ON courses.course_id = enrollments.course_id GROUP BY courses.course_name"
+}

@@ -1,0 +1,6 @@
+{
+    "title": "Top Product per Category (Window Function)",
+    "description": "Using a CTE and window functions, find the best-selling product (by total revenue) in each category. Display <code>category</code>, <code>name</code>, and <code>revenue</code>.<br><br>Requirements: use a <code>WITH</code> CTE to calculate revenue per product, then use <code>ROW_NUMBER() OVER (PARTITION BY category ORDER BY revenue DESC)</code> to rank within each category, then filter for rank = 1.",
+    "hint": "You need two CTEs: one for product revenue, one to add ROW_NUMBER. Then SELECT from the second where rn = 1.",
+    "solution": "WITH product_revenue AS (SELECT products.name, products.category, SUM(products.price * order_items.quantity) as revenue FROM products INNER JOIN order_items ON products.product_id = order_items.product_id GROUP BY products.product_id, products.name, products.category), ranked AS (SELECT name, category, revenue, ROW_NUMBER() OVER (PARTITION BY category ORDER BY revenue DESC) as rn FROM product_revenue) SELECT category, name, revenue FROM ranked WHERE rn = 1"
+}

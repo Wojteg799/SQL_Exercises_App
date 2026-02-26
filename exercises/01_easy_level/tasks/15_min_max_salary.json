@@ -1,0 +1,6 @@
+{
+    "title": "Minimum and Maximum Salary",
+    "description": "Write a query to find the lowest and highest salary in the company. Display them as <code>min_salary</code> and <code>max_salary</code>.",
+    "hint": "Use MIN() and MAX() aggregate functions.",
+    "solution": "SELECT MIN(salary) as min_salary, MAX(salary) as max_salary FROM employees"
+}

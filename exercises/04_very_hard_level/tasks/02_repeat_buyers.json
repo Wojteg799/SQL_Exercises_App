@@ -1,0 +1,6 @@
+{
+    "title": "Month-over-Month Growth (LAG)",
+    "description": "Using a CTE and the <code>LAG()</code> window function, calculate each month's revenue and the percentage change compared to the previous month. Display <code>month</code>, <code>revenue</code>, <code>prev_revenue</code>, and <code>pct_change</code> (rounded to 1 decimal, NULL for the first month).",
+    "hint": "CTE calculates monthly revenue using strftime. Then use LAG(revenue) OVER (ORDER BY month) to get the previous month's value. Compute pct_change as ROUND((revenue - prev) * 100.0 / prev, 1).",
+    "solution": "WITH monthly AS (SELECT strftime('%Y-%m', orders.order_date) as month, SUM(products.price * order_items.quantity) as revenue FROM orders INNER JOIN order_items ON orders.order_id = order_items.order_id INNER JOIN products ON order_items.product_id = products.product_id GROUP BY strftime('%Y-%m', orders.order_date)) SELECT month, revenue, LAG(revenue) OVER (ORDER BY month) as prev_revenue, ROUND((revenue - LAG(revenue) OVER (ORDER BY month)) * 100.0 / LAG(revenue) OVER (ORDER BY month), 1) as pct_change FROM monthly ORDER BY month"
+}

@@ -1,0 +1,6 @@
+{
+    "title": "Orders from New York",
+    "description": "Write a query to list all orders placed by customers from <code>New York</code>. Display <code>order_id</code>, <code>order_date</code>, and <code>name</code> (customer name).",
+    "hint": "Join orders with customers, then filter with WHERE on the city column.",
+    "solution": "SELECT orders.order_id, orders.order_date, customers.name FROM orders INNER JOIN customers ON orders.customer_id = customers.customer_id WHERE customers.city = 'New York'"
+}

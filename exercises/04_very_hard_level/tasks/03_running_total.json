@@ -1,0 +1,6 @@
+{
+    "title": "Running Revenue Total (SUM OVER)",
+    "description": "Using a CTE and the <code>SUM() OVER()</code> window function, display each order's date, its revenue, and a cumulative running total up to that order. Display <code>order_id</code>, <code>order_date</code>, <code>order_revenue</code>, and <code>running_total</code>.",
+    "hint": "CTE calculates revenue per order. Then use SUM(order_revenue) OVER (ORDER BY order_id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) for the running total.",
+    "solution": "WITH order_revenue AS (SELECT orders.order_id, orders.order_date, SUM(products.price * order_items.quantity) as order_revenue FROM orders INNER JOIN order_items ON orders.order_id = order_items.order_id INNER JOIN products ON order_items.product_id = products.product_id GROUP BY orders.order_id, orders.order_date) SELECT order_id, order_date, order_revenue, SUM(order_revenue) OVER (ORDER BY order_id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as running_total FROM order_revenue ORDER BY order_id"
+}

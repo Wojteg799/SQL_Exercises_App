@@ -202,6 +202,11 @@ body {
     color: var(--error);
 }
 
+.difficulty-badge.very_hard {
+    background: rgba(188, 108, 255, 0.2);
+    color: #bc6cff;
+}
+
 .task-list {
     display: none;
     background: var(--bg-medium);
