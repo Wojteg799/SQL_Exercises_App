@@ -347,6 +347,76 @@ body {
     color: var(--text-secondary);
 }
 
+.task-hint-hidden {
+    border-left: 3px solid var(--border-light);
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-top: var(--spacing-md);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* ========================================
+   Hints Toggle Switch
+   ======================================== */
+.hints-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+    cursor: pointer;
+    user-select: none;
+}
+
+.hints-toggle input[type="checkbox"] {
+    display: none;
+}
+
+.toggle-track {
+    position: relative;
+    width: 36px;
+    height: 20px;
+    background: var(--bg-lighter);
+    border-radius: 10px;
+    transition: background var(--transition-fast);
+    flex-shrink: 0;
+    border: 1px solid var(--border-light);
+}
+
+.hints-toggle input:checked + .toggle-track {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.toggle-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    background: white;
+    border-radius: 50%;
+    transition: transform var(--transition-fast);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+.hints-toggle input:checked + .toggle-track .toggle-thumb {
+    transform: translateX(16px);
+}
+
+.toggle-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+}
+
+.hints-toggle:hover .toggle-label {
+    color: var(--text-primary);
+}
+
 /* Editor Section */
 .editor-section {
     flex: 1;

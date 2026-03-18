@@ -14,19 +14,6 @@ python app.py
 
 Open http://127.0.0.1:5000
 
-## Exercises
-
-**Easy Level** — single table (`employees`): 8 tasks
-- SELECT, WHERE, COUNT, AVG, ORDER BY, GROUP BY, LIMIT
-
-**Medium Level** — multiple tables (`customers`, `products`, `orders`, `order_items`): 12 tasks
-- JOIN, LEFT JOIN, GROUP BY + HAVING, subqueries, COALESCE, correlated subqueries
-
-**Hard Level** — university database (`students`, `professors`, `courses`, `enrollments`): 7 tasks
-- Multi-table JOINs, correlated subqueries, COUNT DISTINCT, ROUND, complex HAVING
-
-27 tasks total.
-
 ## Adding new exercises
 
 1. Create a folder in `exercises/` (e.g. `04_expert_level/`)
@@ -48,6 +35,3 @@ Open http://127.0.0.1:5000
    }
    ```
 
-## Stack
-
-Python, Flask, SQLite, vanilla JS. Dark theme, green accents.

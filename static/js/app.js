@@ -1,7 +1,9 @@
 // State Management
 let currentFolder = null;
 let currentTask = null;
+let currentTaskData = null;
 let completedTasks = JSON.parse(localStorage.getItem('completedTasks') || '{}');
+let hintsEnabled = localStorage.getItem('hintsEnabled') !== 'false'; // default: true
 
 // DOM Elements
 const exerciseMenu = document.getElementById('exerciseMenu');
@@ -16,6 +18,12 @@ const toast = document.getElementById('toast');
 document.addEventListener('DOMContentLoaded', () => {
     loadExercises();
 
+    // Restore hints toggle state
+    const hintsToggle = document.getElementById('hintsToggle');
+    if (hintsToggle) {
+        hintsToggle.checked = hintsEnabled;
+    }
+
     // Add keyboard shortcut for running queries (Ctrl+Enter)
     sqlEditor.addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.key === 'Enter') {
@@ -23,6 +31,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Toggle hints visibility
+function toggleHints(enabled) {
+    hintsEnabled = enabled;
+    localStorage.setItem('hintsEnabled', enabled);
+    // Re-render the current task if one is loaded
+    if (currentTaskData) {
+        renderTaskDescription(currentTaskData);
+    }
+}
 
 // Load all exercises from the server
 async function loadExercises() {
@@ -119,6 +137,7 @@ async function selectTask(folderId, taskId) {
         const response = await fetch(`/api/task/${folderId}/${taskId}`);
         const data = await response.json();
 
+        currentTaskData = data.task;
         renderTaskDescription(data.task);
         renderSchema(data.db_structure);
 
@@ -145,8 +164,10 @@ function renderTaskDescription(task) {
         <p>${task.description}</p>
     `;
 
-    if (task.hint) {
+    if (task.hint && hintsEnabled) {
         html += `<div class="task-hint">💡 <strong>Hint:</strong> ${task.hint}</div>`;
+    } else if (task.hint && !hintsEnabled) {
+        html += `<div class="task-hint-hidden">💡 <em>Hints are disabled</em></div>`;
     }
 
     taskDescription.innerHTML = html;
